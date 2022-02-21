@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 from fastiecm import fastiecm
 
-original = cv2.imread('images/original.png') # Load image from /images/
+original = cv2.imread('images/original.jpg') # Load image from /images/
 
 def display(image, image_name):
     image = np.array(image, dtype=float)/float(255)  # Convert to an array of pixels
