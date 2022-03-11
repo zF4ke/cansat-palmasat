@@ -17,7 +17,7 @@ while True:
         f = open("bmp_storage.txt", "a+")
 
         try:
-            f.write(f'dt_string {output}\n')
+            f.write(f'{dt_string} {output}\n')
         except:
             print('Something went wrong when writing to the file')
         finally:
