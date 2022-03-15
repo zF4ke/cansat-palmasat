@@ -42,12 +42,14 @@ def enableCommands():
         match command:
             case 'stop':
                 stop = True
-            try:
-                uart.write(str.encode('*** Stopped ***\n'))
-            except:
-                print('Something went wrong when writing to the serial port')     
+                
+                try:
+                    uart.write(str.encode('*** Stopped ***\n'))
+                except:
+                    print('Something went wrong when writing to the serial port')     
             case _:        
                 return 0   # 0 is the default case if x is not found
+
 
         time.sleep(0.5)
 
