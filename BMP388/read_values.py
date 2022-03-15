@@ -4,6 +4,8 @@ import time
 import bmp388library
 from send_serial import write
 
+print(write)
+
 bmp = bmp388library.DFRobot_BMP388_I2C(0x77)
 
 def export_txt(output):
