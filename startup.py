@@ -39,16 +39,13 @@ def enableCommands():
     while not stop:
         command = uart.readline()
 
-        match command:
-            case 'stop':
-                stop = True
-                
-                try:
-                    uart.write(str.encode('*** Stopped ***\n'))
-                except:
-                    print('Something went wrong when writing to the serial port')     
-            case _:        
-                return 0   # 0 is the default case if x is not found
+        if command = 'stop':
+            stop = True
+
+            try:
+                uart.write(str.encode('*** Stopped ***\n'))
+            except:
+                print('Something went wrong when writing to the serial port')     
 
 
         time.sleep(0.5)
