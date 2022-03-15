@@ -39,7 +39,7 @@ def enableCommands():
     while not stop:
         command = uart.readline()
 
-        if command = 'stop':
+        if command == 'stop':
             stop = True
 
             try:
