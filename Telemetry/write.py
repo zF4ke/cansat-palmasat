@@ -7,7 +7,7 @@ message = "Hello, World!"
 
 while message != "stop":
     message = input('')
-    uart.write(str.encode(message))
+    uart.write(str.encode(message + "\n"))
 
     time.sleep(0.5)
 
