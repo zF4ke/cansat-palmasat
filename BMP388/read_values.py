@@ -1,31 +1,34 @@
-import bmp388library
-import time
 from datetime import datetime
+import time
+
+import bmp388library
+from send_serial import write
 
 bmp = bmp388library.DFRobot_BMP388_I2C(0x77)
 
-while True:
+def export_txt(output):
     now = datetime.now()
     dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
 
+    f = open("bmp_storage.txt", "a+")
+
+    try:
+        f.write(f'{dt_string} {output}\n')
+    except:
+         print('Something went wrong when writing to the file')
+    finally:
+        f.close()
+
+def run():
     try:
         temperature = bmp.readTemperature()
         pressure = bmp.readPressure()
 
-        output = f"T: {temperature} | P: {pressure}"
+        output = f"T: {temperature} P: {pressure}"
 
-        f = open("bmp_storage.txt", "a+")
-
-        try:
-            f.write(f'{dt_string} {output}\n')
-        except:
-            print('Something went wrong when writing to the file')
-        finally:
-            f.close()
-
-        print(output)
+        export_txt(output)
+        write(output)
 
     except:
         print("An exception occurred")
 
-    time.sleep(0.5)
