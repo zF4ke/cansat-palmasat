@@ -1,11 +1,11 @@
-sys.path.append(os.path.join(sys.path[0], 'BMP388'))
-
-from BMP388 import read_values as bmp
-
 import serial
 import time
 import sys
 import os
+
+sys.path.append(os.path.join(sys.path[0], 'BMP388'))
+
+from BMP388 import read_values as bmp
 
 def initMsg():
     uart = serial.Serial(port='/dev/ttyS0', baudrate=9600)
@@ -24,4 +24,5 @@ def startBMP():
 
 if __name__ == '__main__':
     initMsg()
+    startBMP()
     
