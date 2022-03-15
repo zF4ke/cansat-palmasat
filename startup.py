@@ -11,11 +11,18 @@ def initMsg():
     uart = serial.Serial(port='/dev/ttyS0', baudrate=9600)
 
     try:
-        uart.write(str.encode('*** Starting ***'))
+        uart.write(str.encode('*** Starting ***\n'))
     except:
         print('Something went wrong when writing to the serial port')
 
+    time.sleep(3)
+
 def startBMP():
+    try:
+        uart.write(str.encode('\n\n: BMP388 is running.\n\n'))
+    except:
+        print('Something went wrong when writing to the serial port')
+
 
     while True:
         bmp.run()
