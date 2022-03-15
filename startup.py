@@ -1,3 +1,5 @@
+sys.path.append(os.path.join(sys.path[0], 'BMP388'))
+
 from BMP388 import read_values as bmp
 
 import serial
@@ -14,7 +16,6 @@ def initMsg():
         print('Something went wrong when writing to the serial port')
 
 def startBMP():
-    sys.path.append(os.path.join(sys.path[0], 'BMP388'))
 
     while True:
         bmp.run()
