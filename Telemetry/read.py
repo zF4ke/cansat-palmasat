@@ -4,7 +4,7 @@ import time
 uart = serial.Serial(port='/dev/ttyS0', baudrate=9600)
 
 while True:
-    uart.readline()
+    print(uart.read(8))
 
-    time.sleep(1)
+    #time.sleep(1)
 
