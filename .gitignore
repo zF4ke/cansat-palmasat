@@ -1,3 +1,7 @@
+BMP388/__pycache__/
+MPU6050/__pycache__/
+Camera/__pycache__/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

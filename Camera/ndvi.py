@@ -2,9 +2,9 @@ import cv2
 import numpy as np
 from fastiecm import fastiecm
 
-original = cv2.imread('images/original.jpg') # Load image from /images/
+original = cv2.imread('picturefilter.jpg') # Load image from /images/
 
-def display(image, image_name):
+"""def display(image, image_name):
     image = np.array(image, dtype=float)/float(255)  # Convert to an array of pixels
     
     shape = image.shape # get image shape
@@ -19,7 +19,7 @@ def display(image, image_name):
     cv2.namedWindow(image_name)
     cv2.imshow(image_name, image)
     cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    cv2.destroyAllWindows()"""
     
 def contrast_stretch(im):
     # The next step is to find the largest and smallest of those numbers
@@ -68,10 +68,10 @@ ndvi_contrasted = contrast_stretch(ndvi) # enhance the image
 
 cv2.imwrite('images/ndvi_contrasted.png', ndvi_contrasted) # saves the ndvi contrasted image to a file
 
-display(original, 'Original')
-display(contrasted, 'Contrasted original')
-display(ndvi, 'NDVI')
-display(ndvi_contrasted, 'NDVI Contrasted')
+#display(original, 'Original')
+#display(contrasted, 'Contrasted original')
+#display(ndvi, 'NDVI')
+#display(ndvi_contrasted, 'NDVI Contrasted')
 
 # Because it’s difficult for humans to tell the difference between different shades of grey. We can run the image through a colour mapping process that will turn really bright pixels to the colour red and dark pixels to the colour blue. 
 
@@ -84,5 +84,5 @@ color_mapped_image = cv2.applyColorMap(color_mapped_prep, fastiecm)
 
 cv2.imwrite('images/color_mapped_image.png', color_mapped_image)
 
-display(color_mapped_image, 'Color mapped')
+#display(color_mapped_image, 'Color mapped')
 

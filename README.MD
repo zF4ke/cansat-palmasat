@@ -1,6 +1,6 @@
 # Sources
 
-- BMP338 Library
+- BMP388 Library
 https://github.com/DFRobot/DFRobot_BMP388
 
 - Fastie Colour Map
