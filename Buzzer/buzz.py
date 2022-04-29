@@ -7,7 +7,7 @@ import wideputin
 import megalovania
 import wearenumberone
 
-BuzzerPin = 9
+BuzzerPin = 25
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(BuzzerPin, GPIO.OUT) 
@@ -27,4 +27,4 @@ def play():
         wearenumberone.play(Buzz)
 
 
-play()
+

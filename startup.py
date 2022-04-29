@@ -59,17 +59,17 @@ def startCamera():
 
     while True:
         x, y = angle_o_meter.get_angles()
-        #print(x)
-        #print(y)
+        print(f"x: {x}")
+        print(f"y: {y}")
 
-        x_min=-10
-        x_max=10
+        x_min=-12
+        x_max=22
 
-        y_min=-10
-        y_max=10
+        y_min=-12
+        y_max=22
 
-        #if (x_min < x < x_max) and (y_min < y < y_max):
-        camera.capture() 
+        if (x_min < x < x_max) and (y_min < y < y_max):
+        	camera.capture() 
 
         time.sleep(3)
 
