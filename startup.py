@@ -1,3 +1,7 @@
+from Buzzer import buzz
+from Camera import camera
+from MPU6050 import angle_o_meter
+from BMP388 import read_values as bmp
 from multiprocessing import Process
 import serial
 import time
@@ -7,27 +11,25 @@ from picamera import PiCamera
 
 sys.path.append(os.path.join(sys.path[0], 'BMP388'))
 
-from BMP388 import read_values as bmp
 
 sys.path.append(os.path.join(sys.path[0], 'MPU6050'))
 
-from MPU6050 import angle_o_meter
 
 sys.path.append(os.path.join(sys.path[0], 'Camera'))
 
-from Camera import camera
 
-#sys.path.append(os.path.join(sys.path[0], 'Buzzer'))
+sys.path.append(os.path.join(sys.path[0], 'Buzzer'))
 
-#from Buzzer import buzz
 
 uart = serial.Serial(port='/dev/ttyS0', baudrate=9600)
+
 
 def initMsg():
     try:
         uart.write(str.encode('*** Starting ***\n\n'))
     except:
         print('Something went wrong when writing to the serial port')
+
 
 def startBMP():
     try:
@@ -42,13 +44,12 @@ def startBMP():
 
 
 def startBuzzer():
-    buzz.play()
-
     try:
         uart.write(str.encode(': Buzzer is running.\n'))
-        uart.write(str.encode(': piiiiiiiiiiiiiiiii.\n'))
     except:
         print('Something went wrong when writing to the serial port')
+
+    buzz.play()
 
 
 def startCamera():
@@ -62,18 +63,19 @@ def startCamera():
         print(f"x: {x}")
         print(f"y: {y}")
 
-        x_min=-12
-        x_max=22
+        x_min = -30
+        x_max = 40
 
-        y_min=-12
-        y_max=22
+        y_min = -30
+        y_max = 40
 
-        if (x_min < x < x_max) and (y_min < y < y_max):
-        	camera.capture() 
+        # if (x_min < x < x_max) and (y_min < y < y_max):
+        camera.capture()
 
-        time.sleep(3)
+        time.sleep(1)
 
-def enableCommands():  
+
+def enableCommands():
     try:
         uart.write(str.encode(': Commands enabled.\n'))
     except:
@@ -98,5 +100,3 @@ def enableCommands():
 if __name__ == '__main__':
     initMsg()
     enableCommands()
-    
-
