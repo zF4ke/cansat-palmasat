@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 from fastiecm import fastiecm
 
-original = cv2.imread('picturefilter.jpg') # Load image from /images/
+original = cv2.imread('./pictures/image_02_05_2022_17_02_55.jpg') # Load image from /images/
 
 """def display(image, image_name):
     image = np.array(image, dtype=float)/float(255)  # Convert to an array of pixels
@@ -51,22 +51,22 @@ def calc_ndvi(image):
     
     bottom = (r.astype(float) + b.astype(float))
     bottom[bottom==0] = 0.01
-    ndvi = (b.astype(float) - r) / bottom
+    ndvi = (r.astype(float) - b) / bottom
     
     return ndvi
     
 
 contrasted = contrast_stretch(original) # contrast the original image
 
-cv2.imwrite('images/contrasted.png', contrasted) # saves the contrasted image to a file
+cv2.imwrite('results/contrasted.png', contrasted) # saves the contrasted image to a file
 
 ndvi = calc_ndvi(contrasted) # calculates the ndvi with the contrasted image
 
-cv2.imwrite('images/ndvi.png', ndvi) # saves the ndvi image to a file
+cv2.imwrite('results/ndvi.png', ndvi) # saves the ndvi image to a file
 
 ndvi_contrasted = contrast_stretch(ndvi) # enhance the image
 
-cv2.imwrite('images/ndvi_contrasted.png', ndvi_contrasted) # saves the ndvi contrasted image to a file
+cv2.imwrite('results/ndvi_contrasted.png', ndvi_contrasted) # saves the ndvi contrasted image to a file
 
 #display(original, 'Original')
 #display(contrasted, 'Contrasted original')
@@ -82,7 +82,7 @@ cv2.imwrite('images/ndvi_contrasted.png', ndvi_contrasted) # saves the ndvi cont
 color_mapped_prep = ndvi_contrasted.astype(np.uint8)
 color_mapped_image = cv2.applyColorMap(color_mapped_prep, fastiecm)
 
-cv2.imwrite('images/color_mapped_image.png', color_mapped_image)
+cv2.imwrite('results/color_mapped_image.png', color_mapped_image)
 
 #display(color_mapped_image, 'Color mapped')
 
