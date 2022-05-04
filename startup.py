@@ -6,21 +6,21 @@ import sys
 import os
 from picamera import PiCamera
 
-sys.path.append(os.path.join(sys.path[0], 'BMP388'))
+#sys.path.append(os.path.join(sys.path[0], 'BMP388'))
 
-from BMP388 import read_values as bmp
+#from BMP388 import read_values as bmp
 
-sys.path.append(os.path.join(sys.path[0], 'MPU6050'))
+#sys.path.append(os.path.join(sys.path[0], 'MPU6050'))
 
-from MPU6050 import angle_o_meter
+#from MPU6050 import angle_o_meter
 
 sys.path.append(os.path.join(sys.path[0], 'Camera'))
 
 from Camera import camera
 
-sys.path.append(os.path.join(sys.path[0], 'Buzzer'))
+#sys.path.append(os.path.join(sys.path[0], 'Buzzer'))
 
-from Buzzer import buzz
+#from Buzzer import buzz
 
 
 uart = serial.Serial(port='/dev/ttyS0', baudrate=9600)
@@ -61,21 +61,20 @@ def startCamera():
         print('Something went wrong when writing to the serial port')
 
     while True:
-        #x, y = angle_o_meter.get_angles()
-        #print(f"x: {x}")
-        #print(f"y: {y}")
+        x, y = angle_o_meter.get_angles()
+        print(f"x: {x}")
+        print(f"y: {y}")
 
-        #x_min = -30
-        #x_max = 40
+        x_min = -30
+        x_max = 40
 
-        #y_min = -30
-        #y_max = 40
+        y_min = -30
+        y_max = 40
 
         #if (x_min < x < x_max) and (y_min < y < y_max):
-        print("Capture!")
-        camera.capture()
-
-        time.sleep(1)
+        #	print("Capture!")
+        #	camera.capture()
+	#	time.sleep(1)
 
 
 def enableCommands():
@@ -102,5 +101,5 @@ def enableCommands():
 
 if __name__ == '__main__':
     initMsg()
-    (Process(target=startCamera)).start()
+    #(Process(target=startCamera)).start()
     enableCommands()
