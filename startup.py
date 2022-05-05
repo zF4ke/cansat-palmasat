@@ -6,21 +6,21 @@ import sys
 import os
 from picamera import PiCamera
 
-#sys.path.append(os.path.join(sys.path[0], 'BMP388'))
+sys.path.append(os.path.join(sys.path[0], 'BMP388'))
 
-#from BMP388 import read_values as bmp
+from BMP388 import read_values as bmp
 
-#sys.path.append(os.path.join(sys.path[0], 'MPU6050'))
+sys.path.append(os.path.join(sys.path[0], 'MPU6050'))
 
-#from MPU6050 import angle_o_meter
+from MPU6050 import angle_o_meter
 
 sys.path.append(os.path.join(sys.path[0], 'Camera'))
 
 from Camera import camera
 
-#sys.path.append(os.path.join(sys.path[0], 'Buzzer'))
+sys.path.append(os.path.join(sys.path[0], 'Buzzer'))
 
-#from Buzzer import buzz
+from Buzzer import buzz
 
 
 uart = serial.Serial(port='/dev/ttyS0', baudrate=9600)
@@ -71,10 +71,10 @@ def startCamera():
         y_min = -30
         y_max = 40
 
-        #if (x_min < x < x_max) and (y_min < y < y_max):
-        #	print("Capture!")
-        #	camera.capture()
-	#	time.sleep(1)
+        if (x_min < x < x_max) and (y_min < y < y_max):
+            print("Capture!")
+            camera.capture()
+            time.sleep(1)
 
 
 def enableCommands():
@@ -84,8 +84,7 @@ def enableCommands():
         print('Something went wrong when writing to the serial port')
 
     while True:
-        command = (uart.read(8)).decode('utf-8')
-
+        command = (uart.read(8)).decode('utf-8');print(command)
         if 'ping' in command:
             uart.write(str.encode('<> Pong! </>\n'))
 
@@ -101,5 +100,5 @@ def enableCommands():
 
 if __name__ == '__main__':
     initMsg()
-    #(Process(target=startCamera)).start()
+    ##(Process(target=startBMP)).start()
     enableCommands()
