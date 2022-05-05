@@ -1,0 +1,3 @@
+import buzz
+
+buzz.play()
